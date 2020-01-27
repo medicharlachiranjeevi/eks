@@ -62,13 +62,20 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingre
 ```
 kubectl edit deployment.apps/alb-ingress-controller -n kube-system
 ```
-## add 
+## add to file 
 ```
     spec:
       containers:
       - args:
         - --ingress-class=alb
-        - --cluster-name=prod
+        - --cluster-name=basic-cluster
         - --aws-vpc-id=vpc-03468a8157edca5bd
         - --aws-region=us-east-1
+```
+## Deploy  2048 game
+```
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingress-controller/v1.1.4/docs/examples/2048/2048-namespace.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingress-controller/v1.1.4/docs/examples/2048/2048-deployment.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingress-controller/v1.1.4/docs/examples/2048/2048-service.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingress-controller/v1.1.4/docs/examples/2048/2048-ingress.yaml
 ```
