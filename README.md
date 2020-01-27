@@ -83,3 +83,19 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes-sigs/aws-alb-ingre
 ```
 kubectl get ingress/2048-ingress -n 2048-game
 ```
+## create secret
+### Base 64 encoded
+```
+echo -n 'my-app' | base64
+echo -n '39528$vdg7Jb' | base64
+```
+### file
+```
+apiVersion: v1
+kind: Secret
+metadata:
+  name: test-secret
+data:
+  username: bXktYXBw
+  password: Mzk1MjgkdmRnN0p
+```
