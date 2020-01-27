@@ -99,3 +99,7 @@ data:
   username: bXktYXBw
   password: Mzk1MjgkdmRnN0p
 ```
+### with out base64
+```
+kubectl create secret generic test-secret --from-literal=username='my-app' --from-literal=password='39528$vdg7Jb'
+```
