@@ -103,3 +103,7 @@ data:
 ```
 kubectl create secret generic test-secret --from-literal=username='my-app' --from-literal=password='39528$vdg7Jb'
 ```
+### For horizontal scaling 
+```
+kubectl autoscale deployment php-apache --cpu-percent=50 --min=1 --max=10
+```
