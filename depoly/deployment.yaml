@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "2048-deployment"
+  namespace: "2048-game"
+spec:
+  selector:
+    matchLabels:
+      app: "2048"
+  replicas: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 25% 
+  template:
+    metadata:
+      labels:
+        app: "2048"
+    spec:
+      containers:
+      - image: '**********'
+        imagePullPolicy: Always
+        name: "2048"
+        volumeMounts:
+          - name: persistent-storage
+            mountPath: /home/app/webapp/public/
+        ports:
+        - containerPort: 80
+        env:
+          - 
+            name: APP_HOST
+            valueFrom:
+              secretKeyRef:
+                name: dev-secret
+                key: APP_HOST
+          -
+                name: APP_DATABASE
+                valueFrom:
+                  secretKeyRef:
+                    name: dev-secret
+                    key: APP_DATABASE
+          -
+                name: APP_USER
+                valueFrom:
+                  secretKeyRef:
+                    name: dev-secret
+                    key: APP_USER
+          -
+                name: APP_PASSWORD
+                valueFrom:
+                  secretKeyRef:
+                    name: dev-secret
+                    key: APP_PASSWORD
+      volumes:
+      - name: persistent-storage
+        persistentVolumeClaim:
+                claimName: efs-claim
+      

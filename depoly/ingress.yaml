@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: "2048-ingress"
+    namespace: "2048-game"
+    annotations:
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+      kubernetes.io/ingress.class: alb
+      alb.ingress.kubernetes.io/scheme: internet-facing
+      nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  tls:
+  - hosts:
+    - local.greycampus.com
+    secretName: greycampus
+  rules:
+  - host: local.greycampus.com
+    http:
+      paths:
+        - path: /*
+          backend:
+            serviceName: "service-2048"
+            servicePort: 80
+       
+
+  
