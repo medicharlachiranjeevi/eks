@@ -12,10 +12,10 @@ metadata:
 spec:
   tls:
   - hosts:
-    - local.greycampus.com
-    secretName: greycampus
+    - example.com
+    secretName: ******
   rules:
-  - host: local.greycampus.com
+  - host: example.com
     http:
       paths:
         - path: /*
